@@ -2981,3 +2981,368 @@ input:checked + .slider:before {
 .ahw-section {
   animation: ahwFadeIn 0.25s ease both;
 }
+/* ─────────────────────────────────────────────────────────────
+   Edit Handwritten Notes — Dashboard Form
+   ───────────────────────────────────────────────────────────── */
+
+.ehw-page {
+  padding: 24px 28px 100px;
+  background: #f6f7fb;
+  min-height: 100vh;
+  font-family: inherit;
+  color: #1a1d29;
+}
+
+/* ─── Header ─────────────────────────────────────────────── */
+.ehw-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.ehw-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ehw-back-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #e4e7ec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #444;
+  transition: 0.2s;
+}
+.ehw-back-btn:hover {
+  background: #f1f3f9;
+  border-color: #cbd2e0;
+}
+
+.ehw-header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  color: #101828;
+}
+
+.ehw-breadcrumb {
+  font-size: 13px;
+  color: #667085;
+  margin-top: 4px;
+}
+.ehw-breadcrumb .sep {
+  margin: 0 6px;
+}
+.ehw-breadcrumb .current {
+  color: #6941c6;
+  font-weight: 500;
+}
+
+/* ─── Card ───────────────────────────────────────────────── */
+.ehw-card {
+  background: #fff;
+  border: 1px solid #eaecf0;
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  overflow: hidden;
+}
+
+/* ─── Sections ───────────────────────────────────────────── */
+.ehw-section {
+  padding: 24px 28px;
+  border-bottom: 1px solid #f0f2f5;
+}
+.ehw-section:last-child {
+  border-bottom: none;
+}
+
+.ehw-section-head {
+  margin-bottom: 18px;
+}
+.ehw-section-head h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: #101828;
+}
+.ehw-section-head p {
+  font-size: 13px;
+  color: #667085;
+  margin: 0;
+}
+
+.ehw-subsection {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dashed #e4e7ec;
+}
+
+/* ─── Grid ───────────────────────────────────────────────── */
+.ehw-grid {
+  display: grid;
+  gap: 18px 20px;
+}
+.ehw-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.ehw-field-full {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 720px) {
+  .ehw-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Fields ─────────────────────────────────────────────── */
+.ehw-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ehw-field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #344054;
+}
+
+.ehw-field .req {
+  color: #d92d20;
+}
+
+.ehw-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #101828;
+  background: #fff;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.15s ease;
+  font-family: inherit;
+}
+
+.ehw-input::placeholder {
+  color: #98a2b3;
+}
+
+.ehw-input:focus {
+  border-color: #7f56d9;
+  box-shadow: 0 0 0 3px rgba(127, 86, 217, 0.15);
+}
+
+.ehw-textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.ehw-help {
+  font-size: 12px;
+  color: #667085;
+}
+
+/* ─── File lists ─────────────────────────────────────────── */
+.ehw-file-group {
+  margin-bottom: 18px;
+}
+
+.ehw-file-group-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 10px;
+  color: #344054;
+}
+
+.ehw-danger-title {
+  color: #b42318;
+}
+
+.ehw-file-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ehw-file-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: #fafbfc;
+  border: 1px solid #eaecf0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: 0.15s;
+}
+
+.ehw-file-item:hover {
+  background: #f5f6fa;
+}
+
+.ehw-file-item-deleted {
+  background: #fff5f5;
+  border-style: dashed;
+  border-color: #fda29b;
+}
+
+.ehw-file-item-new {
+  background: #f6fef9;
+  border-color: #a6f4c5;
+}
+
+.ehw-file-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #eef0f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #475467;
+  flex-shrink: 0;
+}
+
+.ehw-file-name {
+  flex: 1;
+  color: #101828;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ehw-file-name:hover {
+  text-decoration: underline;
+}
+.ehw-file-name small {
+  display: block;
+  font-size: 12px;
+  color: #667085;
+  margin-top: 2px;
+}
+
+/* ─── Buttons ────────────────────────────────────────────── */
+.ehw-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid #eaecf0;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.15s;
+  color: #475467;
+}
+
+.ehw-icon-btn-danger:hover {
+  background: #fef3f2;
+  border-color: #fda29b;
+  color: #b42318;
+}
+
+.ehw-btn-ghost {
+  background: transparent;
+  border: 1px solid #d0d5dd;
+  color: #344054;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.15s;
+}
+.ehw-btn-ghost:hover {
+  background: #f9fafb;
+}
+
+/* ─── Dropzone ───────────────────────────────────────────── */
+.ehw-dropzone {
+  border: 2px dashed #d0d5dd;
+  border-radius: 10px;
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.15s;
+  color: #475467;
+  background: #fcfcfd;
+}
+
+.ehw-dropzone:hover {
+  border-color: #7f56d9;
+  background: #f9f5ff;
+  color: #6941c6;
+}
+
+.ehw-dropzone-title {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 8px 0 4px;
+  color: inherit;
+}
+
+.ehw-dropzone-sub {
+  font-size: 12px;
+  color: #667085;
+  margin: 0;
+}
+
+/* ─── Footer ─────────────────────────────────────────────── */
+.ehw-footer {
+  position: sticky;
+  bottom: 0;
+  margin-top: 20px;
+  padding: 16px 28px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background: #fff;
+  border-top: 1px solid #eaecf0;
+  border-radius: 14px 14px 0 0;
+  box-shadow: 0 -4px 12px rgba(16, 24, 40, 0.04);
+}
+
+.ehw-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.15s;
+  border: 1px solid transparent;
+  font-family: inherit;
+}
+
+.ehw-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ehw-btn-primary {
+  background: #6941c6;
+  color: #fff;
+}
+.ehw-btn-primary:hover:not(:disabled) {
+  background: #59359f;
+}
+
+.ehw-btn-secondary {
+  background: #fff;
+  color: #344054;
+  border-color: #d0d5dd;
+}
+.ehw-btn-secondary:hover:not(:disabled) {
+  background: #f9fafb;
+}
