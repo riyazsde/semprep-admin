@@ -2613,3 +2613,371 @@ input:checked + .slider:before {
   grid-template-columns: repeat(2,1fr);
   gap: 2px;
 }
+
+/* ─────────────────────────────────────────────────────────
+   Add Handwritten Note — page styles
+   ───────────────────────────────────────────────────────── */
+
+.ahw-page {
+  --ahw-bg: #f6f8fb;
+  --ahw-card: #ffffff;
+  --ahw-border: #e5e9f0;
+  --ahw-border-strong: #d3dae5;
+  --ahw-text: #1f2937;
+  --ahw-muted: #6b7280;
+  --ahw-primary: #4f46e5;
+  --ahw-primary-hover: #4338ca;
+  --ahw-primary-soft: #eef2ff;
+  --ahw-success: #16a34a;
+  --ahw-success-soft: #ecfdf5;
+  --ahw-danger: #dc2626;
+  --ahw-radius: 12px;
+  --ahw-radius-sm: 8px;
+  --ahw-shadow: 0 1px 2px rgba(16, 24, 40, 0.04),
+    0 8px 24px -12px rgba(16, 24, 40, 0.08);
+}
+
+/* Dark mode friendly — flip if your dashboard uses .dark or [data-theme="dark"] */
+@media (prefers-color-scheme: dark) {
+  .ahw-page {
+    --ahw-bg: #0f1220;
+    --ahw-card: #161a2e;
+    --ahw-border: #262b45;
+    --ahw-border-strong: #313754;
+    --ahw-text: #e5e7eb;
+    --ahw-muted: #9ca3af;
+    --ahw-primary-soft: #1e1b4b;
+    --ahw-success-soft: #052e1a;
+  }
+}
+
+/* ── Header ───────────────────────────────────────────── */
+.ahw-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.ahw-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ahw-muted);
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+
+.ahw-breadcrumb-active {
+  color: var(--ahw-text);
+  font-weight: 600;
+}
+
+.ahw-breadcrumb-sep {
+  opacity: 0.5;
+}
+
+/* ── Card wrapper ─────────────────────────────────────── */
+.ahw-card {
+  background: var(--ahw-card);
+  border: 1px solid var(--ahw-border);
+  border-radius: var(--ahw-radius);
+  box-shadow: var(--ahw-shadow);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ── Sections ─────────────────────────────────────────── */
+.ahw-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 24px;
+  border-bottom: 1px dashed var(--ahw-border);
+}
+
+.ahw-section:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ahw-section-head h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ahw-text);
+  margin: 0;
+}
+
+.ahw-section-head p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--ahw-muted);
+}
+
+/* ── Grid layout — fully responsive ───────────────────── */
+.ahw-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.ahw-grid-1 {
+  grid-template-columns: 1fr;
+}
+
+.ahw-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ahw-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 992px) {
+  .ahw-grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .ahw-grid-2,
+  .ahw-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .ahw-card {
+    padding: 18px;
+    border-radius: var(--ahw-radius-sm);
+    gap: 22px;
+  }
+}
+
+/* ── Fields ───────────────────────────────────────────── */
+.ahw-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0; /* prevent grid blowout on long content */
+}
+
+.ahw-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ahw-text);
+}
+
+.ahw-req {
+  color: var(--ahw-danger);
+  margin-left: 2px;
+}
+
+.ahw-field input[type="text"],
+.ahw-field input[type="number"],
+.ahw-field select,
+.ahw-field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--ahw-radius-sm);
+  border: 1px solid var(--ahw-border-strong);
+  background: var(--ahw-card);
+  color: var(--ahw-text);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-sizing: border-box;
+}
+
+.ahw-field textarea {
+  resize: vertical;
+  min-height: 84px;
+}
+
+.ahw-field input:focus,
+.ahw-field select:focus,
+.ahw-field textarea:focus {
+  border-color: var(--ahw-primary);
+  box-shadow: 0 0 0 3px var(--ahw-primary-soft);
+}
+
+.ahw-field input::placeholder,
+.ahw-field textarea::placeholder {
+  color: var(--ahw-muted);
+}
+
+/* Embedded HandwrittenNotesFormComponent wrapper */
+.ahw-embedded {
+  border: 1px solid var(--ahw-border);
+  border-radius: var(--ahw-radius-sm);
+  padding: 16px;
+  background: var(--ahw-bg);
+}
+
+/* ── Upload block ─────────────────────────────────────── */
+.ahw-upload-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.ahw-upload {
+  flex: 1 1 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 22px 16px;
+  border: 2px dashed var(--ahw-border-strong);
+  border-radius: var(--ahw-radius-sm);
+  background: var(--ahw-bg);
+  cursor: pointer;
+  color: var(--ahw-muted);
+  text-align: center;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  min-height: 110px;
+}
+
+.ahw-upload:hover {
+  border-color: var(--ahw-primary);
+  color: var(--ahw-primary);
+  background: var(--ahw-primary-soft);
+}
+
+.ahw-upload input[type="file"] {
+  display: none;
+}
+
+.ahw-upload-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ahw-text);
+  word-break: break-all;
+}
+
+.ahw-upload-hint {
+  font-size: 12px;
+  color: var(--ahw-muted);
+}
+
+.ahw-upload-success {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--ahw-radius-sm);
+  background: var(--ahw-success-soft);
+  color: var(--ahw-success);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ahw-icon-btn {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.ahw-icon-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+/* ── Buttons ──────────────────────────────────────────── */
+.ahw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--ahw-radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease, transform 0.05s ease;
+  white-space: nowrap;
+}
+
+.ahw-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.ahw-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ahw-btn-primary {
+  background: var(--ahw-primary);
+  color: #ffffff;
+}
+
+.ahw-btn-primary:hover:not(:disabled) {
+  background: var(--ahw-primary-hover);
+}
+
+.ahw-btn-ghost {
+  background: transparent;
+  color: var(--ahw-text);
+  border-color: var(--ahw-border-strong);
+}
+
+.ahw-btn-ghost:hover:not(:disabled) {
+  background: var(--ahw-bg);
+}
+
+/* ── Sticky action bar ────────────────────────────────── */
+.ahw-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--ahw-border);
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .ahw-actions {
+    flex-direction: column-reverse;
+  }
+
+  .ahw-actions .ahw-btn {
+    width: 100%;
+  }
+
+  .ahw-upload-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ahw-upload {
+    flex: 1 1 auto;
+  }
+}
+
+/* ── Optional: section fade-in for snappier feel ──────── */
+@keyframes ahwFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ahw-section {
+  animation: ahwFadeIn 0.25s ease both;
+}

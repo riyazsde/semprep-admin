@@ -4,7 +4,13 @@ import {
   postRequest,
   putRequest,
 } from "./apiService";
+import axios from "axios";
 import { endpoints } from "./endPoints";
+import api from "./api";
+import { showNotification } from "./exportComponents";
+import { toast } from "sonner"; // 
+const baseUrl = "https://prep-project-zej8.onrender.com";
+
 
 export const getHomePageContentBanner = async ({ setIsLoading, setData }) => {
   getRequest({
@@ -864,19 +870,32 @@ export const deleteSkill = async ({ id, addFun }) => {
 };
 
 export const addHandwrittenNote = async ({ setIsLoading, data, addFun }) => {
-  postRequest({
-    endpoint: endpoints.addHandwrittenNote,
-    data,
-  })
-    .then((res) => {
-      if (res !== undefined) {
-        if (addFun) addFun();
-      }
-    })
-    .catch((err) => {
-      console.log(err);
+  try {
+    const res = await postRequest({
+      endpoint: endpoints.addHandwrittenNote,
+      data,
     });
+    if (res !== undefined && addFun) addFun();
+    return res;
+  } catch (err) {
+    console.error(err);
+    const msg =
+      err?.response?.data?.message ||
+      err?.message ||
+      "Failed to save handwritten note.";
+    toast.error(msg);
+    throw err;
+  }
 };
+
+// ─────────────────────────────────────────────────────────────
+// Upload handwritten notes file
+// Auth token is read from localStorage. If your apiService uses a
+// different key (e.g. "authToken", "accessToken"), update the
+// getToken() line below to match.
+// ─────────────────────────────────────────────────────────────
+
+
 export const deleteHandwrittenNote = async ({ id, addFun }) => {
   deleteRequest({
     endpoint: endpoints.deleteHandwrittenNote(id),
@@ -1303,6 +1322,37 @@ export const deletePYQ = async ({ id, addFun }) => {
     .catch((err) => {
       console.log(err);
     });
+};
+// ─────────────────────────────────────────────────────────────
+// Upload handwritten notes file
+// ─────────────────────────────────────────────────────────────
+export const uploadHandwrittenNotesFile = async ({ file, setIsLoading }) => {
+  if (setIsLoading) setIsLoading(true);
+  try {
+    const formData = new FormData();
+    formData.append("notes", file);
+
+    const token =
+      localStorage.getItem("token") ||
+      localStorage.getItem("authToken") ||
+      localStorage.getItem("accessToken") ||
+      localStorage.getItem("adminToken");
+
+    const response = await axios.post(
+      `${baseUrl}/api/v1/admin/handwritten-notes/upload`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          ...(token && { Authorization: `Bearer ${token}` }),
+        },
+      }
+    );
+
+    return response.data;
+  } finally {
+    if (setIsLoading) setIsLoading(false);
+  }
 };
 
 export const addPYQ = async ({ data, addFun }) => {
@@ -1908,8 +1958,6 @@ export const getDailyNews = async ({ setData, setIsLoading, params = {} }) => {
       console.log(err);
     });
 };
-
-// 定义一个异步函数getEditorialAnalysis，接收setData和setIsLoading两个参数
 
 export const deleteDailyNews = async ({ addFun, id }) => {
   deleteRequest({
@@ -2894,7 +2942,6 @@ export const updateHomeData = async ({ data, setIsLoading, addFun }) => {
     endpoint: `/admin/home/update`,
     data,
     setIsLoading,
-
   })
     .then((res) => {
       if (res !== undefined) {
@@ -2921,9 +2968,9 @@ export const getAllCoupons = async ({ setData, setIsLoading, params }) => {
     .catch((err) => {
       console.log(err);
     });
-}
+};
 
-export const deleteCoupon= async({couponId, setIsLoading, getData}) => {
+export const deleteCoupon = async ({ couponId, setIsLoading, getData }) => {
   deleteRequest({
     endpoint: `/admin/coupons/${couponId}`,
     setIsLoading,
@@ -2936,8 +2983,7 @@ export const deleteCoupon= async({couponId, setIsLoading, getData}) => {
     .catch((err) => {
       console.log(err);
     });
-}
-
+};
 
 export const addCoupon = async ({ data, setIsLoading, addFun }) => {
   postRequest({
@@ -2953,8 +2999,7 @@ export const addCoupon = async ({ data, setIsLoading, addFun }) => {
     .catch((err) => {
       console.log(err);
     });
-}
-
+};
 
 export const getAllSubscriptions = async ({ setData, setIsLoading, params }) => {
   getRequest({
@@ -2971,9 +3016,13 @@ export const getAllSubscriptions = async ({ setData, setIsLoading, params }) => 
     .catch((err) => {
       console.log(err);
     });
-}
+};
 
-export const deleteSubscription= async({subscriptionId, setIsLoading, getData}) => {
+export const deleteSubscription = async ({
+  subscriptionId,
+  setIsLoading,
+  getData,
+}) => {
   deleteRequest({
     endpoint: `/admin/subscription-plan/${subscriptionId}`,
     setIsLoading,
@@ -2986,10 +3035,9 @@ export const deleteSubscription= async({subscriptionId, setIsLoading, getData}) 
     .catch((err) => {
       console.log(err);
     });
-}
+};
 
-
-export const addSubscription= async ({ data, setIsLoading, addFun }) => {
+export const addSubscription = async ({ data, setIsLoading, addFun }) => {
   postRequest({
     endpoint: `/admin/subscription-plan`,
     data,
@@ -3003,4 +3051,4 @@ export const addSubscription= async ({ data, setIsLoading, addFun }) => {
     .catch((err) => {
       console.log(err);
     });
-}
+};

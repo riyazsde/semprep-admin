@@ -94,6 +94,7 @@ export const endpoints = {
   getHandwrittenNoteById: (id) => `/admin/handwritten-notes/${id}`,
   deleteHandwrittenNote: (id) => `/admin/handwritten-notes/${id}`,
   addHandwrittenNote: "/admin/handwritten-notes",
+  uploadHandwrittenNotesFile: "/admin/handwritten-notes/upload",
   updateHandwrittenNote: (id) => `/admin/handwritten-notes/${id}`,
   getAllEducatorNotes: "/admin/educators",
 
