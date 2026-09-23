@@ -46,6 +46,8 @@ const Login = () => {
                 <option value="">Select User Type</option>
                 <option value="SUPER-ADMIN">Admin</option>
                 <option value="PARTNER">Employee</option>
+                                <option value="USER">User</option>
+
               </select>
             </div>
             <div className="input-group">

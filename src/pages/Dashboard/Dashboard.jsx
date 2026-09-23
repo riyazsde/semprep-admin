@@ -13,6 +13,7 @@ import { FaFilePen } from "react-icons/fa6";
 import { BiSolidBookContent } from "react-icons/bi";
 import { HiMiniBarsArrowUp } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import "./dashboard.css";   
 
 const Dashboard = () => {
   return (
@@ -29,60 +30,24 @@ const Dashboard = () => {
               <h6>Edit Home Page Content</h6>
             </div>
           </Link>
-          {/* <Link to={"/dashboard/studyplanner-AI"} className="link">
-            <div className="dashboardcontent">
-              <FaCalendarDays />
-              <h6>Study Planner AI Page Content</h6>
-            </div>
-          </Link> */}
-          {/* <Link to={"/dashboard/about-exam"} className="link">
-            <div className="dashboardcontent">
-              <FaFilePen />
-              <h6>About Exam Page Content</h6>
-            </div>
-          </Link> */}
           <Link to={"/dashboard/course-page"} className="link">
             <div className="dashboardcontent">
               <MdGolfCourse />
               <h6>Course Page Content</h6>
             </div>
           </Link>
-          {/* <Link to={"/dashboard/homepage-content"} className="link">
-            <div className="dashboardcontent">
-              <BsBookFill />
-              <h6>Test with video Page Content</h6>
-            </div>
-          </Link> */}
           <Link to={"/dashboard/handwritten-notes"} className="link">
             <div className="dashboardcontent">
               <PiBookFill />
               <h6>Handwritten Notes Page Content</h6>
             </div>
           </Link>
-          {/* <Link to={"/dashboard/pyq-with-video-page-content"} className="link">
-            <div className="dashboardcontent">
-              <PiNotepadFill />
-              <h6>PYQ’s with videos Page Content</h6>
-            </div>
-          </Link> */}
           <Link to={"/dashboard/community"} className="link">
             <div className="dashboardcontent">
               <MdHandshake />
               <h6>Community Page Content</h6>
             </div>
           </Link>
-          {/* <Link to={"/dashboard/capsule-courses"} className="link">
-            <div className="dashboardcontent">
-              <HiMiniBarsArrowUp />
-              <h6>Capsule course Page Content</h6>
-            </div>
-          </Link> */}
-          {/* <Link to={"/dashboard/skills"} className="link">
-            <div className="dashboardcontent">
-              <FaFireFlameCurved />
-              <h6>Skills Page Content</h6>
-            </div>
-          </Link> */}
           <Link to={"/dashboard/current-affairs"} className="link">
             <div className="dashboardcontent">
               <BiSolidNews />
