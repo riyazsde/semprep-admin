@@ -30,6 +30,7 @@ import EditorialAnalysis from "../pages/Dashboard/EditorialAnalysis.jsx";
 import HandwrittenNotes from "../pages/Dashboard/HandwrittenNotes.jsx";
 import HomePageContent from "../pages/Dashboard/HomePageContent.jsx";
 import LandingPage from "../pages/Dashboard/LandingPage.jsx";
+import Testseries from "../pages/Dashboard/TestSeries.jsx"
 import PYQWithVideoPageContent from "../pages/Dashboard/PYQWithVideoPageContent.jsx";
 import SkillsPage from "../pages/Dashboard/SkillsPage.jsx";
 import StudyPlannerAI from "../pages/Dashboard/StudyPlannerAI.jsx";
@@ -360,6 +361,10 @@ const allRoutes = [
   {
     route: "/dashboard/landing-page",
     component: <LandingPage />,
+  },
+   {
+    route: "/dashboard/test-series",
+    component: <Testseries/>,
   },
   {
     route: "/dashboard/landing-page/aboutus",

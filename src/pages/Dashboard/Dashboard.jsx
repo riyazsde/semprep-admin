@@ -60,10 +60,11 @@ const Dashboard = () => {
               <h6>Landing Page Content</h6>
             </div>
           </Link>
-          <Link to={"/add-files"} className="link">
+         
+          <Link to={"/dashboard/test-series"} className="link">
             <div className="dashboardcontent">
               <BiSolidBookContent />
-              <h6>Upload Files</h6>
+              <h6>Test Series</h6>
             </div>
           </Link>
         </div>
